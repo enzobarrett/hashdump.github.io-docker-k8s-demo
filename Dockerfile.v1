@@ -1,0 +1,19 @@
+# start with a barebones filesystem with just ruby
+FROM ruby:2.7
+
+# throw errors if Gemfile has been modified since Gemfile.lock
+RUN bundle config --global frozen 1
+
+# this is where all the project files will be stored, think of this like our home dir
+WORKDIR /usr/src/app
+
+# just copy over Gemfile to install deps in container
+# location in file is important for caching!
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+
+# copy over rest of project
+COPY . .
+
+# start jekyll
+CMD jekyll s
