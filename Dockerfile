@@ -18,4 +18,4 @@ RUN jekyll build
 FROM httpd:2.4
 
 # copy static html to new container, deleting previous step
-COPY ./_site/ /usr/local/apache2/htdocs/
+COPY --from=0 ./_site/ /usr/local/apache2/htdocs/
