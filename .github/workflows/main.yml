@@ -46,3 +46,8 @@ jobs:
 
       - name: Save DigitalOcean kubeconfig
         run: doctl kubernetes cluster kubeconfig save aea8a723-a77a-43f9-a56f-d87cbde0757b
+        
+      - name: Update Deployment File
+        run: |
+          sed -i 's|<IMAGE>|enzobarrett/k8s-demo:'${{ steps.shortsha.outputs.id }}'|' $GITHUB_WORKSPACE/k8s/manifest.yaml   
+          cat $GITHUB_WORKSPACE/k8s/manifest.yaml
