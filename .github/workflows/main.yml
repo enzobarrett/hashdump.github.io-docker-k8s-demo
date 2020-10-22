@@ -8,6 +8,9 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout master
+        uses: actions/checkout@master
+        
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -49,5 +52,5 @@ jobs:
         
       - name: Update Deployment File
         run: |
-          sed -i 's|<IMAGE>|enzobarrett/k8s-demo:'${{ steps.shortsha.outputs.id }}'|' $GITHUB_WORKSPACE/k8s/manifest.yaml   
+          sed -i 's|<IMAGE>|enzobarrett/k8s-demo:'${{ steps.shortsha.outputs.id }}'|' $GITHUB_WORKSPACE/k8s/manifest.yaml
           cat $GITHUB_WORKSPACE/k8s/manifest.yaml
