@@ -54,3 +54,6 @@ jobs:
         run: |
           sed -i 's|<IMAGE>|enzobarrett/k8s-demo:'${{ steps.shortsha.outputs.id }}'|' $GITHUB_WORKSPACE/k8s/manifest.yaml
           cat $GITHUB_WORKSPACE/k8s/manifest.yaml
+
+      - name: Deploy to DigitalOcean Kubernetes
+        run: kubectl apply -f $GITHUB_WORKSPACE/k8s/manifest.yaml
