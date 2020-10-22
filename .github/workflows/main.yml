@@ -20,13 +20,21 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: Generate Short SHA
+        id: shortsha
+        run: |
+          id=$(echo ${{ github.sha }} | head -c7)
+          echo "::set-output name=id::$id"
+        
       -
         name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: enzobarrett/k8s-demo:${{ github.sha }}
+          tags: enzobarrett/k8s-demo:${{ steps.shortsha.outputs.id }}
+          
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
