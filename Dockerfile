@@ -15,6 +15,7 @@ COPY . .
 RUN jekyll build
 
 # start from new container, saving the previous
+# APACHE
 FROM httpd:2.4
 
 # copy static html to new container, deleting previous step
