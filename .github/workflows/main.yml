@@ -45,7 +45,7 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: Save DigitalOcean kubeconfig
-        run: doctl kubernetes cluster kubeconfig save 862d080f-0a80-463f-af12-dde5a4cc46f7
+        run: doctl kubernetes cluster kubeconfig save 23a5affe-720e-41b6-aa83-fc4479ade83b
         
       - name: Update Deployment File
         run: |
